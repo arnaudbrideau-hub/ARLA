@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Fugaz+One&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-
+ 
 <style>
   :root {
     --bordeaux: #6B1A1A;
@@ -23,7 +23,7 @@
     font-family: 'Montserrat', sans-serif; font-weight: 300;
     overflow-x: hidden; cursor: none;
   }
-
+ 
   .cursor {
     width: 10px; height: 10px; background: var(--bordeaux); border-radius: 50%;
     position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
@@ -34,7 +34,7 @@
     position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998;
     transform: translate(-50%, -50%); transition: all 0.18s ease; opacity: 0.6;
   }
-
+ 
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     padding: 28px 48px; display: flex; justify-content: space-between; align-items: center;
@@ -50,7 +50,7 @@
     color: var(--bordeaux); text-decoration: none; opacity: 0.7; transition: opacity 0.2s;
   }
   .nav-links a:hover { opacity: 1; }
-
+ 
   /* HERO */
   .hero {
     min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
@@ -102,7 +102,7 @@
   .hero-cta:hover { gap: 22px; }
   .hero-cta svg { transition: transform 0.3s; }
   .hero-cta:hover svg { transform: translateX(4px); }
-
+ 
   /* MARQUEE */
   .marquee-wrap {
     border-top: 1px solid rgba(107,26,26,0.15); border-bottom: 1px solid rgba(107,26,26,0.15);
@@ -116,7 +116,7 @@
   }
   .marquee-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--bordeaux); opacity: 0.4; flex-shrink: 0; }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
+ 
   .section { padding: 120px 48px; }
   .section-label {
     font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase;
@@ -124,7 +124,7 @@
     display: flex; align-items: center; gap: 16px;
   }
   .section-label::after { content: ''; display: block; height: 1px; width: 48px; background: var(--bordeaux); opacity: 0.3; }
-
+ 
   /* SERVICES */
   .services-grid {
     display: grid; grid-template-columns: repeat(3, 1fr);
@@ -143,7 +143,7 @@
   .service-num { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: var(--bordeaux); opacity: 0.12; line-height: 1; margin-bottom: 28px; }
   .service-title { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 400; color: var(--bordeaux); margin-bottom: 16px; line-height: 1.2; }
   .service-desc { font-size: 0.72rem; line-height: 1.85; color: var(--text); opacity: 0.55; }
-
+ 
   /* ABOUT */
   .about {
     display: grid; grid-template-columns: 1fr 1fr;
@@ -185,7 +185,7 @@
   .about-stats { display: flex; gap: 48px; }
   .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: var(--creme); line-height: 1; margin-bottom: 8px; }
   .stat-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--creme); opacity: 0.45; }
-
+ 
   /* PORTFOLIO */
   .portfolio { padding: 120px 48px; }
   .portfolio-title {
@@ -213,7 +213,7 @@
     color: var(--bordeaux); border: 1px solid var(--bordeaux); padding: 16px 32px; transition: all 0.3s ease;
   }
   .cs-cta:hover { background: var(--bordeaux); color: var(--creme); }
-
+ 
   /* INSTAGRAM */
   .instagram { padding: 100px 48px; background: var(--creme-dark); text-align: center; }
   .insta-label { font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--bordeaux); opacity: 0.5; margin-bottom: 24px; }
@@ -229,7 +229,7 @@
   .insta-handle:hover::after { transform: scaleX(1); }
   .insta-handle:hover { opacity: 0.7; }
   .insta-sub { margin-top: 16px; font-size: 0.7rem; color: var(--text); opacity: 0.4; }
-
+ 
   /* CONTACT */
   .contact { padding: 140px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
   .contact-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px, 5.5vw, 80px); font-weight: 300; color: var(--bordeaux); line-height: 1; margin-top: 32px; }
@@ -248,20 +248,20 @@
     cursor: none; transition: background 0.3s ease, gap 0.3s ease; margin-top: 8px;
   }
   .form-submit:hover { background: var(--bordeaux-light); gap: 22px; }
-
+ 
   footer { padding: 48px; border-top: 1px solid rgba(107,26,26,0.12); display: flex; justify-content: space-between; align-items: center; }
   .footer-logo { font-family: 'Fugaz One', sans-serif; font-size: 1rem; letter-spacing: 0.18em; color: var(--bordeaux); }
   .footer-copy { font-size: 0.6rem; letter-spacing: 0.12em; color: var(--bordeaux); opacity: 0.35; }
   .footer-right { display: flex; gap: 28px; }
   .footer-link { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bordeaux); opacity: 0.45; text-decoration: none; transition: opacity 0.2s; }
   .footer-link:hover { opacity: 0.9; }
-
+ 
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes fadeUpFade { from { opacity: 0; transform: translateY(16px); } to { opacity: 0.6; transform: translateY(0); } }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
-
+ 
   @media (max-width: 900px) {
     nav { padding: 24px 28px; } .nav-links { display: none; }
     .hero { grid-template-columns: 1fr; padding: 100px 28px 60px; gap: 40px; }
@@ -278,10 +278,10 @@
 </style>
 </head>
 <body>
-
+ 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
-
+ 
 <nav>
   <a href="#" class="nav-logo">ÂRLA°</a>
   <ul class="nav-links">
@@ -291,7 +291,7 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
-
+ 
 <section class="hero">
   <div class="hero-left">
     <div class="hero-tag">Agence Marketing · Bas-Saint-Laurent</div>
@@ -308,7 +308,7 @@
   <div class="hero-line"></div>
   <div class="hero-scroll-indicator">Défiler</div>
 </section>
-
+ 
 <div class="marquee-wrap">
   <div class="marquee-track">
     <div class="marquee-item"><span>Photographie de marque</span><span class="marquee-dot"></span></div>
@@ -325,7 +325,7 @@
     <div class="marquee-item"><span>Calendrier éditorial</span><span class="marquee-dot"></span></div>
   </div>
 </div>
-
+ 
 <section class="section" id="services">
   <div class="section-label">Nos services</div>
   <div class="services-grid">
@@ -346,7 +346,7 @@
     </div>
   </div>
 </section>
-
+ 
 <section class="about" id="apropos">
   <div class="about-photo reveal">
     <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=1200&q=80" alt="Photographie professionnelle" loading="lazy">
@@ -364,7 +364,7 @@
     </div>
   </div>
 </section>
-
+ 
 <section class="portfolio" id="portfolio">
   <div class="section-label reveal">Portfolio</div>
   <h2 class="portfolio-title reveal">Notre travail<br><em style="font-style:italic;font-family:'Cormorant Garamond',serif;">parle pour lui-même.</em></h2>
@@ -380,29 +380,37 @@
     </div>
   </div>
 </section>
-
+ 
 <section class="instagram reveal">
   <div class="insta-label">Suivez notre quotidien</div>
   <a href="https://instagram.com/arla_bsl" target="_blank" class="insta-handle">@arla_bsl</a>
   <p class="insta-sub">Instagram · Bas-Saint-Laurent</p>
 </section>
-
+ 
 <section class="contact" id="contact">
   <div class="contact-left reveal">
     <div class="section-label">Contact</div>
     <h2 class="contact-headline">On commence<br><em>quand vous voulez.</em></h2>
   </div>
   <div class="contact-form reveal">
-    <div class="form-group"><label>Votre nom</label><input type="text" placeholder="Jean Tremblay"></div>
-    <div class="form-group"><label>Courriel</label><input type="email" placeholder="jean@exemple.com"></div>
-    <div class="form-group"><label>Message</label><textarea rows="4" placeholder="Parlez-nous de votre projet..."></textarea></div>
-    <button class="form-submit">
-      Envoyer
-      <svg width="16" height="6" viewBox="0 0 16 6" fill="none"><path d="M0 3H14M11 1L14 3L11 5" stroke="currentColor" stroke-width="1"/></svg>
-    </button>
+    <form id="contact-form" action="https://formspree.io/f/mkokqnlj" method="POST">
+      <div class="form-group"><label>Votre nom</label><input type="text" name="name" placeholder="Jean Tremblay" required></div>
+      <div class="form-group"><label>Courriel</label><input type="email" name="email" placeholder="jean@exemple.com" required></div>
+      <div class="form-group"><label>Message</label><textarea name="message" rows="4" placeholder="Parlez-nous de votre projet..." required></textarea></div>
+      <button type="submit" class="form-submit" id="submit-btn">
+        Envoyer
+        <svg width="16" height="6" viewBox="0 0 16 6" fill="none"><path d="M0 3H14M11 1L14 3L11 5" stroke="currentColor" stroke-width="1"/></svg>
+      </button>
+      <div id="form-success" style="display:none; margin-top:24px; font-size:0.72rem; letter-spacing:0.1em; color:var(--bordeaux); opacity:0.8;">
+        ✓ &nbsp;Message envoyé — on vous revient rapidement.
+      </div>
+      <div id="form-error" style="display:none; margin-top:24px; font-size:0.72rem; letter-spacing:0.1em; color:var(--bordeaux); opacity:0.8;">
+        Une erreur s'est produite. Réessayez ou écrivez-nous directement.
+      </div>
+    </form>
   </div>
 </section>
-
+ 
 <footer>
   <div class="footer-logo">ÂRLA°</div>
   <div class="footer-copy">© 2025 ÂRLA° · Bas-Saint-Laurent, Québec</div>
@@ -411,7 +419,7 @@
     <a href="#contact" class="footer-link">Contact</a>
   </div>
 </footer>
-
+ 
 <script>
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
@@ -439,4 +447,5 @@
   document.querySelectorAll('.service-card').forEach((card, i) => { card.style.transitionDelay = (i * 0.12) + 's'; });
 </script>
 </body>
+</html>
 </html>

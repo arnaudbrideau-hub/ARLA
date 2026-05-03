@@ -289,6 +289,23 @@ footer{padding:44px 48px;border-top:1px solid rgba(107,26,26,.1);display:flex;ju
 @keyframes tdot{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s;}
 .reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ADMIN VIEW */
+.admin-root{display:flex;height:100vh;overflow:hidden;background:var(--creme);font-family:'DM Sans',sans-serif;}
+.admin-kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:16px;}
+.ct-wrap{background:#fff;border:1px solid rgba(107,26,26,.08);border-radius:6px;overflow:hidden;margin-bottom:14px;}
+.ct-head{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 80px;padding:9px 16px;background:var(--creme-d);border-bottom:1px solid rgba(107,26,26,.08);}
+.ct-col{font-size:.48rem;font-weight:500;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);}
+.ct-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 80px;padding:11px 16px;border-bottom:0.5px solid rgba(107,26,26,.07);align-items:center;cursor:pointer;transition:background .1s;}
+.ct-row:last-child{border-bottom:none;}
+.ct-row:hover{background:rgba(244,239,228,.5);}
+.cli-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:600;flex-shrink:0;}
+.cli-info{display:flex;align-items:center;gap:9px;}
+.cli-name{font-size:.68rem;font-weight:500;color:var(--text);}
+.cli-cat{font-size:.56rem;color:var(--muted);font-weight:300;margin-top:1px;}
+.upsell-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:0.5px solid rgba(107,26,26,.07);}
+.upsell-row:last-child{border-bottom:none;}
+.upsell-tag{font-size:.52rem;font-weight:600;padding:3px 8px;border-radius:3px;background:var(--bord-p);color:var(--bord);border:1px solid rgba(107,26,26,.15);}
 ::-webkit-scrollbar{width:4px;} ::-webkit-scrollbar-thumb{background:var(--creme-dd);border-radius:2px;}
 @media(max-width:860px){
   nav{padding:20px 24px;} .nav-links{display:none;}
@@ -736,6 +753,41 @@ function renderDashboard(connected) {
     </div>`;
 }
 
+
+function showAdminTab(name, el) {
+  ['clients','revenus'].forEach(t => {
+    const e = document.getElementById('admin-tab-'+t);
+    if(e) e.style.display = t===name ? 'block' : 'none';
+  });
+  document.querySelectorAll('#view-admin .dash-nav-item').forEach(n => n.classList.remove('active'));
+  if(el) el.classList.add('active');
+  const titles = {clients:'Mes clients', revenus:'Revenus'};
+  document.getElementById('adminTabTitle').textContent = titles[name] || '';
+}
+
+function loadUser(user) {
+  const meta = user.user_metadata || {};
+  const name = meta.full_name || user.email.split('@')[0];
+  const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
+  const isAdmin = meta.role === 'admin';
+
+  if (isAdmin) {
+    // Admin view
+    document.getElementById('adminName').textContent = name;
+    document.getElementById('adminAv').textContent = initials;
+    showView('admin');
+  } else {
+    // Client view
+    document.getElementById('dashName').textContent = name;
+    document.getElementById('dashAv').textContent = initials;
+    document.getElementById('dashGreeting').textContent = 'Bonjour, ' + name.split(' ')[0] + ' 👋';
+    document.getElementById('settingsName').value = name;
+    document.getElementById('settingsEmail').value = user.email;
+    connectedPlatforms = [];
+    renderDashboard(false);
+    showView('dashboard');
+  }
+}
 // Track connected platforms per session (will be DB in final version)
 let connectedPlatforms = [];
 
@@ -947,6 +999,83 @@ async function callAI(msg){
       </div>
     </div>
   </div>
+</div>
+
+<div class="view" id="view-admin">
+<div class="admin-root">
+  <div class="dash-sidebar">
+    <div class="dash-logo">ÂRLA°<span>Admin</span></div>
+    <div class="dash-pill">
+      <div class="dash-pill-av" id="adminAv">A</div>
+      <div><div class="dash-pill-name" id="adminName">Arnaud</div><div class="dash-pill-plan">Propriétaire</div></div>
+    </div>
+    <div class="dash-nav-lbl">Gestion</div>
+    <div class="dash-nav-item active" onclick="showAdminTab('clients',this)">◈ &nbsp;Mes clients</div>
+    <div class="dash-nav-item" onclick="showAdminTab('revenus',this)">$ &nbsp;Revenus</div>
+    <div class="dash-footer">
+      <button class="dash-signout" onclick="handleSignout()">← Déconnexion</button>
+    </div>
+  </div>
+  <div class="dash-main">
+    <div class="dash-topbar">
+      <div class="dash-topbar-title" id="adminTabTitle">Mes clients</div>
+      <button onclick="alert('Invite envoyée via Supabase')" style="font-size:.6rem;padding:7px 16px;background:var(--bord);color:var(--creme);border:none;font-family:DM Sans,sans-serif;letter-spacing:.1em;text-transform:uppercase;">+ Inviter un client</button>
+    </div>
+    <div class="dash-content">
+
+      <div id="admin-tab-clients">
+        <div class="dash-greeting" style="font-size:1.25rem;margin-bottom:3px;">Mes clients</div>
+        <div class="dash-subgreeting">Vue d'ensemble · Mai 2026</div>
+        <div class="admin-kpi-grid">
+          <div class="kpi"><div class="kpi-lbl">Clients actifs</div><div class="kpi-val">1</div><div class="kpi-delta neu">En croissance</div></div>
+          <div class="kpi"><div class="kpi-lbl">Vues totales</div><div class="kpi-val">—</div><div class="kpi-delta neu">APIs à connecter</div></div>
+          <div class="kpi"><div class="kpi-lbl">Revenu mensuel</div><div class="kpi-val">—</div><div class="kpi-delta neu">À configurer</div></div>
+          <div class="kpi"><div class="kpi-lbl">Vidéos publiées</div><div class="kpi-val">—</div><div class="kpi-delta neu">Ce mois</div></div>
+        </div>
+        <div class="ct-wrap">
+          <div class="ct-head">
+            <div class="ct-col">Client</div>
+            <div class="ct-col">Statut</div>
+            <div class="ct-col">Plateformes</div>
+            <div class="ct-col">Forfait</div>
+            <div class="ct-col"></div>
+          </div>
+          <div id="adminClientRows">
+            <div style="padding:32px;text-align:center;">
+              <div style="font-size:.7rem;color:var(--muted);font-weight:300;margin-bottom:12px;">Tes clients apparaîtront ici une fois invités via Supabase.</div>
+              <button onclick="window.open('https://supabase.com/dashboard/project/bflfdmiocldyvjejmnom/auth/users')" style="font-size:.6rem;padding:7px 16px;border:1px solid rgba(107,26,26,.25);color:var(--bord);background:none;font-family:'DM Sans',sans-serif;">Ouvrir Supabase →</button>
+            </div>
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="dc">
+            <div class="dc-title" style="margin-bottom:12px;">Opportunités d'upsell</div>
+            <div style="font-size:.66rem;color:var(--muted);font-weight:300;line-height:1.75;">Les opportunités d'upsell apparaîtront ici quand tes clients auront connecté leurs plateformes et que leurs données seront disponibles.</div>
+          </div>
+          <div class="dc">
+            <div class="dc-title" style="margin-bottom:12px;">Prochaines étapes</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="font-size:.66rem;color:var(--text);font-weight:300;padding:8px 0;border-bottom:0.5px solid rgba(107,26,26,.07);display:flex;align-items:center;gap:10px;"><span style="color:var(--green);font-size:.7rem;">1</span> Inviter tes clients via Supabase</div>
+              <div style="font-size:.66rem;color:var(--text);font-weight:300;padding:8px 0;border-bottom:0.5px solid rgba(107,26,26,.07);display:flex;align-items:center;gap:10px;"><span style="color:var(--green);font-size:.7rem;">2</span> Faire la demande API sur Meta</div>
+              <div style="font-size:.66rem;color:var(--text);font-weight:300;padding:8px 0;display:flex;align-items:center;gap:10px;"><span style="color:var(--green);font-size:.7rem;">3</span> Faire la demande API sur TikTok</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="admin-tab-revenus" style="display:none;">
+        <div class="dash-greeting" style="font-size:1.25rem;margin-bottom:3px;">Revenus</div>
+        <div class="dash-subgreeting">Vue financière ÂRLA° · 2026</div>
+        <div class="dc" style="margin-top:14px;">
+          <div class="dc-title" style="margin-bottom:10px;">Revenus mensuels récurrents (MRR)</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--bord);margin-bottom:6px;">— $</div>
+          <p style="font-size:.66rem;color:var(--muted);font-weight:300;line-height:1.75;">Configure les forfaits de tes clients pour voir ton MRR apparaître ici. Tu pourras gérer ça directement depuis ce panel une fois les APIs connectées.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
 </div>
 </body>
 </html>

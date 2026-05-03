@@ -532,45 +532,17 @@ footer{padding:44px 48px;border-top:1px solid rgba(107,26,26,.1);display:flex;ju
       <div id="tab-overview">
         <div class="dash-greeting" id="dashGreeting">Bonjour 👋</div>
         <div class="dash-subgreeting">Performance de vos contenus · 30 derniers jours</div>
-        <div class="kpi-grid">
-          <div class="kpi"><div class="kpi-lbl">Vues totales</div><div class="kpi-val">142 800</div><div class="kpi-delta up">↑ +34%</div><div class="pp-row"><span class="pp tt">TT</span><span class="pp ig">IG</span><span class="pp fb">FB</span></div></div>
-          <div class="kpi"><div class="kpi-lbl">Engagement</div><div class="kpi-val">8 210</div><div class="kpi-delta up">↑ +21%</div><div class="pp-row"><span class="pp tt">TT</span><span class="pp ig">IG</span></div></div>
-          <div class="kpi"><div class="kpi-lbl">Vidéos publiées</div><div class="kpi-val">18</div><div class="kpi-delta neu">Ce mois-ci</div><div class="pp-row"><span class="pp tt">TT</span><span class="pp ig">IG</span><span class="pp fb">FB</span></div></div>
-          <div class="kpi"><div class="kpi-lbl">Taux d'engagement</div><div class="kpi-val">5.7%</div><div class="kpi-delta dn">↓ -0.4%</div><div class="pp-row"><span class="pp ig">IG</span></div></div>
+        <div id="kpiSection">
+          <!-- Filled dynamically by renderDashboard() -->
         </div>
-        <div class="two-col">
-          <div class="dc">
-            <div class="dc-header"><div><div class="dc-title">Vues par plateforme</div><div class="dc-sub">30 derniers jours</div></div></div>
-            <div class="pbar-row"><div class="pbar-name" style="color:#111;">TT</div><div class="pbar-track"><div class="pbar-fill" style="width:62%;background:#111;"></div></div><div class="pbar-val">88k</div><div class="pbar-pct">62%</div></div>
-            <div class="pbar-row"><div class="pbar-name" style="color:#C13584;">IG</div><div class="pbar-track"><div class="pbar-fill" style="width:29%;background:#C13584;"></div></div><div class="pbar-val">41k</div><div class="pbar-pct">29%</div></div>
-            <div class="pbar-row"><div class="pbar-name" style="color:#1877F2;">FB</div><div class="pbar-track"><div class="pbar-fill" style="width:9%;background:#1877F2;"></div></div><div class="pbar-val">13k</div><div class="pbar-pct">9%</div></div>
-            <p style="font-size:.62rem;color:var(--muted);margin-top:9px;font-style:italic;">TikTok génère <strong style="font-style:normal;color:var(--bord);">62%</strong> de vos vues ce mois-ci.</p>
-          </div>
-          <div class="dc">
-            <div class="dc-header"><div><div class="dc-title">Vidéos récentes</div><div class="dc-sub">4 dernières publications</div></div><button style="font-size:.58rem;color:var(--muted);background:none;border:none;text-decoration:underline;" onclick="showTab('videos',null)">Voir tout</button></div>
-            <div class="video-list">
-              <div class="video-row"><div class="vthumb">🍕<div class="vsb vsb-hot">🔥</div></div><div class="vinfo"><div class="vname">Spéciaux du vendredi soir</div><div class="vmeta">TikTok · il y a 3 jours</div></div><div class="vstats"><div class="vs"><div class="vs-val">32k</div><div class="vs-lbl">vues</div></div><div class="vs"><div class="vs-val">4.2%</div><div class="vs-lbl">eng.</div></div></div></div>
-              <div class="video-row"><div class="vthumb">🏪<div class="vsb vsb-hot">🔥</div></div><div class="vinfo"><div class="vname">Coulisses de la cuisine</div><div class="vmeta">Instagram · il y a 5 jours</div></div><div class="vstats"><div class="vs"><div class="vs-val">18k</div><div class="vs-lbl">vues</div></div><div class="vs"><div class="vs-val">7.1%</div><div class="vs-lbl">eng.</div></div></div></div>
-              <div class="video-row"><div class="vthumb">👨‍🍳<div class="vsb vsb-ok">~</div></div><div class="vinfo"><div class="vname">Présentation du chef</div><div class="vmeta">Facebook · il y a 8 jours</div></div><div class="vstats"><div class="vs"><div class="vs-val">3.2k</div><div class="vs-lbl">vues</div></div><div class="vs"><div class="vs-val">2.8%</div><div class="vs-lbl">eng.</div></div></div></div>
-              <div class="video-row"><div class="vthumb">🎉<div class="vsb vsb-low">↓</div></div><div class="vinfo"><div class="vname">Annonce menu d'été</div><div class="vmeta">TikTok · il y a 12 jours</div></div><div class="vstats"><div class="vs"><div class="vs-val">1.1k</div><div class="vs-lbl">vues</div></div><div class="vs"><div class="vs-val">1.2%</div><div class="vs-lbl">eng.</div></div></div></div>
-            </div>
-          </div>
-        </div>
-        <div class="dc">
-          <div class="dc-title" style="margin-bottom:3px;">Ce qui performe — ce qui performe pas</div>
-          <div class="dc-sub">Analyse automatique · 30 derniers jours</div>
-          <div class="ic-grid">
-            <div class="ic ic-hot"><div class="ic-tag h">↑ Ça marche fort</div><div class="ic-text">Les vidéos <strong>coulisses & behind-the-scenes</strong> génèrent <strong>3× plus</strong> d'engagement sur Instagram.</div></div>
-            <div class="ic ic-hot"><div class="ic-tag h">◷ Timing gagnant</div><div class="ic-text">Vos publications le <strong>vendredi entre 18h et 20h</strong> récoltent 40% plus de vues sur TikTok.</div></div>
-            <div class="ic ic-cold"><div class="ic-tag c">↓ À retravailler</div><div class="ic-text">Les vidéos <strong>annonce promotionnelle</strong> ont un engagement de 1.3% — sous votre moyenne de 5.7%.</div></div>
-            <div class="ic ic-cold"><div class="ic-tag c">◎ Plateforme faible</div><div class="ic-text"><strong>Facebook</strong> génère 9% des vues. Les Reels courts IG fonctionnent mieux pour votre contenu.</div></div>
-          </div>
+        <div id="dashDataSection">
+          <!-- Filled dynamically by renderDashboard() -->
         </div>
       </div>
 
       <div id="tab-videos" style="display:none;">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
-          <div><div class="dash-greeting" style="font-size:1.25rem;">Mes vidéos</div><div class="dash-subgreeting">18 vidéos publiées ce mois</div></div>
+          <div><div class="dash-greeting" style="font-size:1.25rem;">Mes vidéos</div><div class="dash-subgreeting" id="videoSubGreeting">Connectez une plateforme pour voir vos vidéos</div></div>
           <div style="display:flex;gap:5px;">
             <button onclick="filterVids('tous',this)" style="font-size:.58rem;padding:5px 11px;border:1px solid var(--bord);background:var(--bord);color:var(--creme);font-family:'DM Sans',sans-serif;">Toutes</button>
             <button onclick="filterVids('tt',this)" style="font-size:.58rem;padding:5px 11px;border:1px solid rgba(107,26,26,.18);background:none;color:var(--muted);font-family:'DM Sans',sans-serif;">TikTok</button>
@@ -688,7 +660,6 @@ async function handleLogin(){
   if(error){err.textContent='Courriel ou mot de passe incorrect.';err.classList.add('show');return;}
   err.classList.remove('show');
   loadUser(data.user);
-  renderVideoGrid(VIDEOS);
   showView('dashboard');
 }
 
@@ -706,46 +677,116 @@ async function handleSignout(){
   showView('landing');
 }
 
-function loadUser(user){
-  const meta=user.user_metadata||{};
-  const name=meta.full_name||user.email.split('@')[0];
-  const initials=name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
-  document.getElementById('dashName').textContent=name;
-  document.getElementById('dashAv').textContent=initials;
-  document.getElementById('dashGreeting').textContent='Bonjour, '+name.split(' ')[0]+' 👋';
-  document.getElementById('settingsName').value=name;
-  document.getElementById('settingsEmail').value=user.email;
+
+// Render dashboard — empty state if no platforms connected, demo data if connected
+function renderDashboard(connected) {
+  const kpiSection = document.getElementById('kpiSection');
+  const dataSection = document.getElementById('dashDataSection');
+
+  if (!connected) {
+    // Empty state — prompt to connect platforms
+    kpiSection.innerHTML = `
+      <div style="background:#fff;border:1px solid rgba(107,26,26,.08);border-radius:8px;padding:36px;text-align:center;margin-bottom:13px;">
+        <div style="font-size:2rem;margin-bottom:12px;">📊</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--bord);margin-bottom:8px;">Vos stats arrivent bientôt</div>
+        <p style="font-size:.7rem;color:var(--muted);line-height:1.75;max-width:360px;margin:0 auto 20px;font-weight:300;">Connectez vos plateformes pour voir vos vues, engagement et performance en temps réel.</p>
+        <button onclick="showTab('connect',null);document.querySelectorAll('.dash-nav-item').forEach(n=>n.classList.remove('active'));" style="background:var(--bord);color:var(--creme);border:none;padding:10px 24px;font-family:'DM Sans',sans-serif;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;">Connecter mes plateformes</button>
+      </div>`;
+    dataSection.innerHTML = '';
+    return;
+  }
+
+  // Connected — show demo data (will be real data once APIs are wired)
+  kpiSection.innerHTML = `
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-lbl">Vues totales</div><div class="kpi-val">142 800</div><div class="kpi-delta up">↑ +34%</div><div class="pp-row"><span class="pp tt">TT</span><span class="pp ig">IG</span><span class="pp fb">FB</span></div></div>
+      <div class="kpi"><div class="kpi-lbl">Engagement</div><div class="kpi-val">8 210</div><div class="kpi-delta up">↑ +21%</div><div class="pp-row"><span class="pp tt">TT</span><span class="pp ig">IG</span></div></div>
+      <div class="kpi"><div class="kpi-lbl">Vidéos publiées</div><div class="kpi-val">18</div><div class="kpi-delta neu">Ce mois-ci</div><div class="pp-row"><span class="pp tt">TT</span><span class="pp ig">IG</span><span class="pp fb">FB</span></div></div>
+      <div class="kpi"><div class="kpi-lbl">Taux d'engagement</div><div class="kpi-val">5.7%</div><div class="kpi-delta dn">↓ -0.4%</div><div class="pp-row"><span class="pp ig">IG</span></div></div>
+    </div>`;
+
+  dataSection.innerHTML = `
+    <div class="two-col">
+      <div class="dc">
+        <div class="dc-header"><div><div class="dc-title">Vues par plateforme</div><div class="dc-sub">30 derniers jours</div></div></div>
+        <div class="pbar-row"><div class="pbar-name" style="color:#111;">TT</div><div class="pbar-track"><div class="pbar-fill" style="width:62%;background:#111;"></div></div><div class="pbar-val">88k</div><div class="pbar-pct">62%</div></div>
+        <div class="pbar-row"><div class="pbar-name" style="color:#C13584;">IG</div><div class="pbar-track"><div class="pbar-fill" style="width:29%;background:#C13584;"></div></div><div class="pbar-val">41k</div><div class="pbar-pct">29%</div></div>
+        <div class="pbar-row"><div class="pbar-name" style="color:#1877F2;">FB</div><div class="pbar-track"><div class="pbar-fill" style="width:9%;background:#1877F2;"></div></div><div class="pbar-val">13k</div><div class="pbar-pct">9%</div></div>
+        <p style="font-size:.62rem;color:var(--muted);margin-top:9px;font-style:italic;">TikTok génère <strong style="font-style:normal;color:var(--bord);">62%</strong> de vos vues ce mois-ci.</p>
+      </div>
+      <div class="dc">
+        <div class="dc-header"><div><div class="dc-title">Vidéos récentes</div><div class="dc-sub">4 dernières publications</div></div><button style="font-size:.58rem;color:var(--muted);background:none;border:none;text-decoration:underline;" onclick="showTab('videos',null)">Voir tout</button></div>
+        <div class="video-list">
+          <div class="video-row"><div class="vthumb">🍕<div class="vsb vsb-hot">🔥</div></div><div class="vinfo"><div class="vname">Spéciaux du vendredi soir</div><div class="vmeta">TikTok · il y a 3 jours</div></div><div class="vstats"><div class="vs"><div class="vs-val">32k</div><div class="vs-lbl">vues</div></div><div class="vs"><div class="vs-val">4.2%</div><div class="vs-lbl">eng.</div></div></div></div>
+          <div class="video-row"><div class="vthumb">🏪<div class="vsb vsb-hot">🔥</div></div><div class="vinfo"><div class="vname">Coulisses de la cuisine</div><div class="vmeta">Instagram · il y a 5 jours</div></div><div class="vstats"><div class="vs"><div class="vs-val">18k</div><div class="vs-lbl">vues</div></div><div class="vs"><div class="vs-val">7.1%</div><div class="vs-lbl">eng.</div></div></div></div>
+          <div class="video-row"><div class="vthumb">👨‍🍳<div class="vsb vsb-ok">~</div></div><div class="vinfo"><div class="vname">Présentation du chef</div><div class="vmeta">Facebook · il y a 8 jours</div></div><div class="vstats"><div class="vs"><div class="vs-val">3.2k</div><div class="vs-lbl">vues</div></div><div class="vs"><div class="vs-val">2.8%</div><div class="vs-lbl">eng.</div></div></div></div>
+          <div class="video-row"><div class="vthumb">🎉<div class="vsb vsb-low">↓</div></div><div class="vinfo"><div class="vname">Annonce menu d'été</div><div class="vmeta">TikTok · il y a 12 jours</div></div><div class="vstats"><div class="vs"><div class="vs-val">1.1k</div><div class="vs-lbl">vues</div></div><div class="vs"><div class="vs-val">1.2%</div><div class="vs-lbl">eng.</div></div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="dc">
+      <div class="dc-title" style="margin-bottom:3px;">Ce qui performe — ce qui performe pas</div>
+      <div class="dc-sub">Analyse automatique · 30 derniers jours</div>
+      <div class="ic-grid">
+        <div class="ic ic-hot"><div class="ic-tag h">↑ Ça marche fort</div><div class="ic-text">Les vidéos <strong>coulisses & behind-the-scenes</strong> génèrent <strong>3× plus</strong> d'engagement sur Instagram.</div></div>
+        <div class="ic ic-hot"><div class="ic-tag h">◷ Timing gagnant</div><div class="ic-text">Vos publications le <strong>vendredi entre 18h et 20h</strong> récoltent 40% plus de vues sur TikTok.</div></div>
+        <div class="ic ic-cold"><div class="ic-tag c">↓ À retravailler</div><div class="ic-text">Les vidéos <strong>annonce promotionnelle</strong> ont un engagement de 1.3% — sous votre moyenne.</div></div>
+        <div class="ic ic-cold"><div class="ic-tag c">◎ Plateforme faible</div><div class="ic-text"><strong>Facebook</strong> génère 9% des vues. Les Reels courts IG fonctionnent mieux pour votre contenu.</div></div>
+      </div>
+    </div>`;
+}
+
+// Track connected platforms per session (will be DB in final version)
+let connectedPlatforms = [];
+
+function loadUser(user) {
+  const meta = user.user_metadata || {};
+  const name = meta.full_name || user.email.split('@')[0];
+  const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+  document.getElementById('dashName').textContent = name;
+  document.getElementById('dashAv').textContent = initials;
+  document.getElementById('dashGreeting').textContent = 'Bonjour, ' + name.split(' ')[0] + ' 👋';
+  document.getElementById('settingsName').value = name;
+  document.getElementById('settingsEmail').value = user.email;
+  // Render empty dashboard — no platforms connected yet
+  connectedPlatforms = [];
+  renderDashboard(false);
 }
 
 
 // Handle Supabase email confirmation links (invitations + password reset)
 async function handleAuthCallback() {
   const hash = window.location.hash;
-  const params = new URLSearchParams(hash.replace('#', '?'));
+  if (!hash || !hash.includes('access_token')) return false;
+
+  const params = new URLSearchParams(hash.replace('#', ''));
   const accessToken = params.get('access_token');
+  const refreshToken = params.get('refresh_token') || '';
   const type = params.get('type');
 
-  if (!accessToken) return;
+  if (!accessToken) return false;
 
-  // Set the session from the token
+  // Set the session
   const { data, error } = await sb.auth.setSession({
     access_token: accessToken,
-    refresh_token: params.get('refresh_token') || ''
+    refresh_token: refreshToken
   });
 
-  // Clear the hash from the URL so it looks clean
+  // Clean URL
   window.history.replaceState({}, document.title, window.location.pathname);
 
-  if (error) return;
+  if (error) { console.error('Auth error:', error); return false; }
 
-  if (type === 'invite' || type === 'recovery' || type === 'signup') {
-    // Show password creation page
+  // Invite or password reset = show password creation
+  if (type === 'invite' || type === 'recovery') {
     showView('setpassword');
-  } else if (type === 'magiclink') {
-    loadUser(data.user);
-    renderVideoGrid(VIDEOS);
-    showView('dashboard');
+    return true;
   }
+
+  // Already confirmed = go to dashboard
+  loadUser(data.user);
+  showView('dashboard');
+  return true;
 }
 
 async function handleSetPassword() {
@@ -778,21 +819,19 @@ async function handleSetPassword() {
 
   // Auto login after password creation
   loadUser(data.user);
-  renderVideoGrid(VIDEOS);
   showView('dashboard');
 }
 
 // Run on page load
 window.addEventListener('DOMContentLoaded', async () => {
   // First check for auth callback (invitation link)
-  await handleAuthCallback();
+  const handled = await handleAuthCallback();
+  if (handled) return;
 
   // Then check if already logged in
-  if (document.getElementById('view-dashboard').classList.contains('active')) return;
   const { data: { session } } = await sb.auth.getSession();
   if (session) {
     loadUser(session.user);
-    renderVideoGrid(VIDEOS);
     showView('dashboard');
   }
 });
@@ -846,10 +885,14 @@ function toggleConnect(btn,platform){
     if(!confirm('Déconnecter '+platform+' ?'))return;
     status.textContent='● Non connecté';status.className='connect-status cs-off';
     btn.textContent='Connecter';btn.className='connect-btn cb-connect';
+    connectedPlatforms=connectedPlatforms.filter(p=>p!==platform);
+    if(connectedPlatforms.length===0) renderDashboard(false);
   }else{
     alert('Connexion à '+platform+' — cette action ouvrira le flow OAuth de '+platform+' quand les APIs seront configurées.');
     status.textContent='● Connecté';status.className='connect-status cs-on';
     btn.textContent='Déconnecter';btn.className='connect-btn cb-disconnect';
+    connectedPlatforms.push(platform);
+    renderDashboard(true);
   }
 }
 

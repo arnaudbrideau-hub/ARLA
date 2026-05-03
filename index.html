@@ -717,9 +717,84 @@ function loadUser(user){
   document.getElementById('settingsEmail').value=user.email;
 }
 
-window.addEventListener('DOMContentLoaded',async()=>{
-  const {data:{session}}=await sb.auth.getSession();
-  if(session){loadUser(session.user);renderVideoGrid(VIDEOS);showView('dashboard');}
+
+// Handle Supabase email confirmation links (invitations + password reset)
+async function handleAuthCallback() {
+  const hash = window.location.hash;
+  const params = new URLSearchParams(hash.replace('#', '?'));
+  const accessToken = params.get('access_token');
+  const type = params.get('type');
+
+  if (!accessToken) return;
+
+  // Set the session from the token
+  const { data, error } = await sb.auth.setSession({
+    access_token: accessToken,
+    refresh_token: params.get('refresh_token') || ''
+  });
+
+  // Clear the hash from the URL so it looks clean
+  window.history.replaceState({}, document.title, window.location.pathname);
+
+  if (error) return;
+
+  if (type === 'invite' || type === 'recovery' || type === 'signup') {
+    // Show password creation page
+    showView('setpassword');
+  } else if (type === 'magiclink') {
+    loadUser(data.user);
+    renderVideoGrid(VIDEOS);
+    showView('dashboard');
+  }
+}
+
+async function handleSetPassword() {
+  const newPass = document.getElementById('newPass').value;
+  const confirmPass = document.getElementById('confirmPass').value;
+  const err = document.getElementById('setPassError');
+  const btn = document.getElementById('setPassBtn');
+
+  if (newPass.length < 6) {
+    err.textContent = 'Le mot de passe doit avoir au moins 6 caractères.';
+    err.classList.add('show'); return;
+  }
+  if (newPass !== confirmPass) {
+    err.textContent = 'Les mots de passe ne correspondent pas.';
+    err.classList.add('show'); return;
+  }
+
+  btn.textContent = 'Création en cours…';
+  btn.style.opacity = '.7';
+
+  const { data, error } = await sb.auth.updateUser({ password: newPass });
+
+  btn.textContent = 'Créer mon mot de passe';
+  btn.style.opacity = '1';
+
+  if (error) {
+    err.textContent = 'Une erreur est survenue. Réessaie.';
+    err.classList.add('show'); return;
+  }
+
+  // Auto login after password creation
+  loadUser(data.user);
+  renderVideoGrid(VIDEOS);
+  showView('dashboard');
+}
+
+// Run on page load
+window.addEventListener('DOMContentLoaded', async () => {
+  // First check for auth callback (invitation link)
+  await handleAuthCallback();
+
+  // Then check if already logged in
+  if (document.getElementById('view-dashboard').classList.contains('active')) return;
+  const { data: { session } } = await sb.auth.getSession();
+  if (session) {
+    loadUser(session.user);
+    renderVideoGrid(VIDEOS);
+    showView('dashboard');
+  }
 });
 
 const TAB_TITLES={overview:'Tableau de bord',videos:'Mes vidéos',rapports:'Rapports',connect:'Connexions',settings:'Paramètres'};
@@ -803,5 +878,32 @@ async function callAI(msg){
   chatTyping=false;
 }
 </script>
+
+<div class="view" id="view-setpassword">
+  <div class="login-view">
+    <div class="login-left">
+      <div class="ll-logo">ÂRLA°</div>
+      <h2 class="ll-headline">Bienvenue<br><em>chez ÂRLA°.</em></h2>
+      <p class="ll-desc">Créez votre mot de passe pour accéder à votre espace client personnalisé.</p>
+      <ul class="ll-feats">
+        <li><span class="lf-dot"></span> Vues et engagement sur toutes vos plateformes</li>
+        <li><span class="lf-dot"></span> Score de performance par vidéo</li>
+        <li><span class="lf-dot"></span> Rapport PDF mensuel automatique</li>
+        <li><span class="lf-dot"></span> Conseiller IA disponible en tout temps</li>
+      </ul>
+    </div>
+    <div class="login-right">
+      <div class="login-form-wrap">
+        <div class="login-eyebrow">ÂRLA° · Espace client</div>
+        <h2 class="login-title">Créez votre<br><em>mot de passe.</em></h2>
+        <div class="lf"><label>Nouveau mot de passe</label><input type="password" id="newPass" placeholder="Minimum 6 caractères"/></div>
+        <div class="lf"><label>Confirmer le mot de passe</label><input type="password" id="confirmPass" placeholder="Répétez votre mot de passe"/></div>
+        <div class="login-error" id="setPassError"></div>
+        <button class="login-btn" id="setPassBtn" onclick="handleSetPassword()">Créer mon mot de passe</button>
+        <p class="login-note" style="margin-top:16px;">Vous serez connecté automatiquement après avoir créé votre mot de passe.</p>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
